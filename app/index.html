@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BMI Calculator</title>
+<link rel="icon" href="icon.svg">
+<link rel="stylesheet" href="base.css">
+<style>
+  .units{display:flex;gap:.25rem;padding:.25rem;border:1px solid var(--line);border-radius:.6rem;background:var(--card);width:max-content;margin:.75rem 0}
+  .units button{border:0;background:transparent}
+  .units button[aria-pressed="true"]{background:var(--accent);color:var(--accent-fg)}
+  form{display:grid;gap:.75rem;max-width:22rem}
+  form label{display:grid;gap:.3rem}
+  .pair{display:flex;gap:.4rem;align-items:center}
+  .pair input{width:5.5rem}
+  .result{font-size:3rem;font-weight:800;margin:1rem 0 0;font-variant-numeric:tabular-nums}
+  .scale{position:relative;height:.8rem;border-radius:1rem;max-width:26rem;background:linear-gradient(90deg,#82b4ff 0 18%,#2f9d63 18% 50%,#e3a33b 50% 70%,#e2463a 70%);margin:.75rem 0 .25rem}
+  .marker{position:absolute;top:-.35rem;width:.25rem;height:1.5rem;background:var(--fg);border-radius:.2rem;transform:translateX(-50%)}
+  .ticks{display:flex;justify-content:space-between;max-width:26rem;font-size:.75rem;color:var(--muted)}
+  .note{color:var(--muted);font-size:.85rem;max-width:34rem}
+</style>
+</head>
+<body>
+<main>
+  <h1>BMI Calculator</h1>
+  <p class="sub">Body mass index from your height and weight.</p>
+  <div class="units" role="group" aria-label="Units">
+    <button data-u="metric" aria-pressed="true">Metric</button>
+    <button data-u="imperial" aria-pressed="false">Imperial</button>
+  </div>
+  <form id="form">
+    <label id="h-metric">Height (cm)<input id="cm" inputmode="decimal" value="172"></label>
+    <label id="h-imp" hidden>Height<span class="pair"><input id="ft" inputmode="numeric" value="5" aria-label="Feet"> ft <input id="inch" inputmode="decimal" value="8" aria-label="Inches"> in</span></label>
+    <label id="w-metric">Weight (kg)<input id="kg" inputmode="decimal" value="70"></label>
+    <label id="w-imp" hidden>Weight (lb)<input id="lb" inputmode="decimal" value="154"></label>
+  </form>
+  <p class="result" id="bmi" aria-live="polite">–</p>
+  <p class="msg" id="cat"></p>
+  <div class="scale" aria-hidden="true"><span class="marker" id="marker"></span></div>
+  <div class="ticks"><span>15</span><span>18.5</span><span>25</span><span>30</span><span>40</span></div>
+  <p class="note">BMI is a rough screening number for adults. It doesn't account for muscle, age, sex or ethnicity, so it can't say whether a weight is healthy for you. Talk to a doctor for that.</p>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
